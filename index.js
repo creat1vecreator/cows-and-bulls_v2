@@ -2,14 +2,19 @@ let randomValue = 0;
 let valueOfStart = '';
 let valueOfCheck = '';
 let numberOfMoves = 1;
+const tableForAppend = document.getElementById("for_append");
 
 const button_start = document.getElementById('button_start');
 button_start.addEventListener("click", () => {
     if(checkIfCorrectChosen(chooseNumberInput.value)) {
         randomValue = createRandomDigits(chooseNumberInput.value);
-        valueOfStart = chooseNumberInput.value;
+        valueOfStart += chooseNumberInput.value;
         console.log(randomValue);
         console.log(valueOfStart);
+        tableForAppend.innerHTML += createRow(numberOfMoves++, cows(randomValue,valueOfCheck), bulls(randomValue,valueOfCheck));
+        console.log(randomValue);
+
+
 
     }
 });
@@ -25,8 +30,7 @@ checkBtn.addEventListener("click", () => {
         console.log("works");
         console.log();
         console.log(bulls(randomValue, valueOfCheck));
-
-        document.getElementById("for_append").innerHTML +=(createRow(numberOfMoves++, cows(randomValue,valueOfCheck), bulls(randomValue,valueOfCheck)));
+        tableForAppend.innerHTML += createRow(numberOfMoves++, cows(randomValue,valueOfCheck), bulls(randomValue,valueOfCheck));
 
     }
     else {
@@ -66,43 +70,42 @@ function createRandomDigits (numberOfDigits)  {
 
 }
 
-
-
-function cows(randomValue, inputNumber) {
+function cows(inputNumber, randomValue) {
     let res = 0;
     let index = 0;
     randomValue.split('').forEach(el => {
         if (randomValue.includes(inputNumber[index]) && randomValue.indexOf(el) !== inputNumber.indexOf(el)) {
             index++
             res++;
-
         } else {
             index++;
+
         }
 
     })
     return res;
 }
-
 
 function bulls(randomValue, inputNumber) {
     let res = 0;
     let index = 0;
+
     randomValue.split('').forEach(el => {
+
         if (randomValue.includes(inputNumber[index]) && randomValue.indexOf(el) === inputNumber.indexOf(el)) {
             index++
             res++;
-
         } else {
             index++;
         }
     })
     return res;
 }
+
+
 
 function createRow(numberOfMoves, cows, bulls) {
     return `<tr><th scope="row">${numberOfMoves}<td>${bulls}</td><td>${cows}</td></tr></th>`.toString();
 
 }
-
 
