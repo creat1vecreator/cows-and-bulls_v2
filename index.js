@@ -72,13 +72,15 @@ function checkIfLengthsAreEqual(randomValue, secondInput) {
 
 //создаёт рандомное значение, в зависимости от выбранной сложности
 function createRandomDigits(numberOfDigits) {
-    let res = ''
+    let res = [];
     let nums = +numberOfDigits;
     for (let i = 0; i < nums; i++) {
-        res += Math.floor(Math.random() * (9 + 1));
+        const num = Math.floor(Math.random() * (9 + 1));
+        if(res.indexOf(num) === -1) {
+            res.push(num);
+        }
     }
-    return res;
-
+    return +res.join('');
 }
 
 function cows(inputNumber, randomValue) {
@@ -115,7 +117,7 @@ function bulls(randomValue, inputNumber) {
 
 
 function createRow(numberOfMoves, cows, bulls) {
-    return `<tr><th scope="row">${numberOfMoves}<td>${bulls}</td><td>${cows}</td></tr></th>`.toString();
+    return `<tr><th scope="row">${numberOfMoves}<td>${cows}</td><td>${bulls}</td></tr></th>`.toString();
 
 }
 
