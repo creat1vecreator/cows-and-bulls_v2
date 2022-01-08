@@ -19,8 +19,6 @@ button_start.addEventListener("click", () => {
     if (checkIfCorrectChosen(valueOfStart)) {
         randomValue = createRandomDigits(chooseNumberInput.value);
         numberOfDigits = +chooseNumberInput.value;
-        console.log("Random value: ", randomValue, "Type of random value: ", typeof randomValue);
-        console.log("First input value:", valueOfStart, "Type of first inout value: ", typeof valueOfStart);
         tableForAppend.innerHTML = '';
         checkBtn.disabled = false;
 
@@ -34,10 +32,7 @@ button_start.addEventListener("click", () => {
 checkBtn.addEventListener("click", () => {
     if (checkIfLengthsAreEqual(randomValue, checkInput.value)) {
         valueOfCheck = checkInput.value;
-        console.log("Random value: ", randomValue, "It's type: ", typeof randomValue);
-        console.log("bulls: ", bulls(randomValue, valueOfCheck), "It's type: ", typeof bulls(randomValue, valueOfCheck));
-        console.log("cows: ", cows(randomValue, valueOfCheck), "It's type: ", typeof cows(randomValue, valueOfCheck));
-        console.log("numbers of digits: ", numberOfDigits);
+        console.log("Random value:", randomValue);
         numberOfBulls = bulls(randomValue, valueOfCheck);
         tableForAppend.innerHTML += createRow(numberOfMoves++, checkCowsAndBulls(String(randomValue), valueOfCheck)[0], checkCowsAndBulls(String(randomValue), valueOfCheck)[1]);
         checkIfWon(numberOfBulls);
