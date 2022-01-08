@@ -74,13 +74,14 @@ function checkIfLengthsAreEqual(randomValue, secondInput) {
 function createRandomDigits(numberOfDigits) {
     let res = [];
     let nums = +numberOfDigits;
-    for (let i = 0; i < nums; i++) {
+    while (res.length < nums) {
         const num = Math.floor(Math.random() * (9 + 1));
-        if(res.indexOf(num) === -1) {
-            res.push(num);
+        if(res.indexOf(num) === -1 && !(num === 0 && res.length === 0)) {
+
+                res.push(num);
         }
     }
-    return +res.join('');
+    return res.join('');
 }
 
 function cows(inputNumber, randomValue) {
