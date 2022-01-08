@@ -79,44 +79,10 @@ function createRandomDigits(numberOfDigits) {
     return res.join('');
 }
 
-function cows(inputNumber, randomValue) {
-    let res = 0;
-    let index = 0;
-    randomValue.split('').forEach(el => {
-        if (randomValue.includes(inputNumber[index]) && randomValue.indexOf(el) !== inputNumber.indexOf(el)) {
-            index++
-            res++;
-        } else {
-            index++;
-
-        }
-
-    })
-    return res;
-}
-
-function bulls(randomValue, inputNumber) {
-    let res = 0;
-    let index = 0;
-
-    randomValue.split('').forEach(el => {
-
-        if (randomValue.includes(inputNumber[index]) && randomValue.indexOf(el) === inputNumber.indexOf(el)) {
-            index++
-            res++;
-        } else {
-            index++;
-        }
-    })
-    return res;
-}
-
-
 function createRow(numberOfMoves, cows, bulls) {
     return `<tr><th scope="row">${numberOfMoves}<td>${cows}</td><td>${bulls}</td></tr></th>`.toString();
 
 }
-
 function checkIfWon(numbersOfBullsInput) {
     if (numbersOfBullsInput === numberOfDigits) {
         alert("Поздравляем! Вы выиграли!");
@@ -144,4 +110,4 @@ function checkCowsAndBulls(secret, guess) {
     }
 
     return [cows, bulls];
-};
+}
