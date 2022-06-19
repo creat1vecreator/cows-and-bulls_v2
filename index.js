@@ -30,10 +30,11 @@ button_start.addEventListener("click", () => {
 
 
 checkBtn.addEventListener("click", () => {
-    if (checkIfLengthsAreEqual(randomValue, checkInput.value)) {
+    const inputValue = checkInput.value;
+    if (checkIfLengthsAreEqual(randomValue, inputValue)) {
         valueOfCheck = checkInput.value;
         console.log("Random value:", randomValue);
-        numberOfBulls = bulls(randomValue, valueOfCheck);
+        numberOfBulls = checkCowsAndBulls(randomValue, valueOfCheck)[1];
         tableForAppend.innerHTML += createRow(numberOfMoves++, checkCowsAndBulls(String(randomValue), valueOfCheck)[0], checkCowsAndBulls(String(randomValue), valueOfCheck)[1]);
         checkIfWon(numberOfBulls);
 
@@ -81,7 +82,6 @@ function createRandomDigits(numberOfDigits) {
 
 function createRow(numberOfMoves, cows, bulls) {
     return `<tr><th scope="row">${numberOfMoves}<td>${cows}</td><td>${bulls}</td></tr></th>`.toString();
-
 }
 function checkIfWon(numbersOfBullsInput) {
     if (numbersOfBullsInput === numberOfDigits) {
